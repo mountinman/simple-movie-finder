@@ -7,9 +7,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn 
-      to="/find-movie"
+      to="/about"
       text>
-        <span class="mr-2">FIND MOVIE</span>
+        <span class="mr-2">ABOUT</span>
       </v-btn>
     </v-app-bar>
     <main style="margin-top:70px;">
