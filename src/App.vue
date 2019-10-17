@@ -10,8 +10,9 @@
         <span class="mr-2">FIND MOVIE</span>
       </v-btn>
     </v-app-bar>
-
-    <v-content></v-content>
+    <main style="margin-top:70px;">
+      <router-view></router-view>
+    </main>
   </v-app>
 </template>
 
@@ -22,3 +23,4 @@ export default {
   }
 };
 </script>
+
