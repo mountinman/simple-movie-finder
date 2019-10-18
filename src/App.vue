@@ -27,7 +27,7 @@ export default {
     return {
       dynamicMenu: [
        {icon: 'home', title: 'HOME', link: '/'},
-       {icon: 'person', title: 'ABOUT', link: '/about'},
+       {icon: 'person', title: 'ABOUT ME', link: '/about'},
       ]
     };
   }
