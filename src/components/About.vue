@@ -15,6 +15,7 @@
             <v-list-item-content>
               <v-list-item-title class="title">Marko Čvrljak</v-list-item-title>
               <v-list-item-subtitle>web Developer</v-list-item-subtitle>
+              <v-list-item-subtitle>THIS IS MY PROJECT MADE FOR YOU GUYS :)</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-col>

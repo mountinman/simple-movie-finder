@@ -7,9 +7,12 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn 
-      to="/about"
+      v-for="item in dynamicMenu"
+      :key="item.title"
+      :to="item.link"
       text>
-        <span class="mr-2">ABOUT</span>
+        <v-icon left dark>{{ item.icon }}</v-icon>
+        <span class="mr-2">{{item.title}}</span>
       </v-btn>
     </v-app-bar>
     <main style="margin-top:70px;">
@@ -22,7 +25,10 @@
 export default {
   data() {
     return {
-      sideNav: true
+      dynamicMenu: [
+       {icon: 'home', title: 'HOME', link: '/'},
+       {icon: 'person', title: 'ABOUT', link: '/about'},
+      ]
     };
   }
 };
