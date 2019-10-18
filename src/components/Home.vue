@@ -26,9 +26,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
-  computed: mapGetters(["allMovies", "popularMovies"])
+  computed: {
+    popularMovies () {
+      return this.$store.getters.popularMovies
+    }
+  }
 };
 </script>
 

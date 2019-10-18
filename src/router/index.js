@@ -4,6 +4,8 @@ import Home from "@/components/Home";
 import FindMovie from "@/components/FindMovie";
 import About from "@/components/About";
 import AllMovies from "@/components/AllMovies";
+import MovieDetails from "@/components/MovieDetails";
+
 
 Vue.use(Router);
 
@@ -23,6 +25,12 @@ export default new Router({
       path: "/movies",
       name: "AllMovies",
       component: AllMovies
+    },
+    {
+      path: "/movies/:id",
+      name: "MovieDetails",
+      props: true,
+      component: MovieDetails
     },
     {
       path: "/find-movie",
