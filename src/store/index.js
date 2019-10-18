@@ -1,10 +1,9 @@
-import Vuex from 'vuex';
-import Vue from 'vue';
+import Vuex from "vuex";
+import Vue from "vue";
+import axios from "axios";
 
-// Load Vuex
 Vue.use(Vuex);
 
-// Create store
 export const store = new Vuex.Store({
   state: {
     allMovies: [
@@ -45,36 +44,44 @@ export const store = new Vuex.Store({
           "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
       }
     ],
-    popularMovies: [
-      {
-        id: "4983rp",
-        title: "pop1",
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
-      },
-      {
-        id: "hjf9h3",
-        title: "pop2",
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
-      }
-    ],
+    popularMovies: []
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setPopularMovies: (state, popularMovies) => {
+      state.popularMovies = popularMovies
+    }
+    
+  },
+  actions: {
+    async fetchPopularMovies({ commit }) {
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/movie/popular?api_key=ae56d736d615cdd0ba87516da9dc0134&language=en-US&page=1"
+      );
+
+      commit("setPopularMovies", response.data.results);
+    }
+
+    // fetchPopularMovies () {
+    //   return fetch('https://jsonplaceholder.typicode.com/todos/1')
+    //   .then(res => {
+    //     store.commit('setPopularMovies', res.data)
+    //     return res.data
+    //   })
+    // }
+  },
   getters: {
-    popularMovies (state) {
-      return state.popularMovies
+    popularMovies(state) {
+      return state.popularMovies;
     },
-    allMovies (state) {
-      return state.allMovies
+    allMovies(state) {
+      return state.allMovies;
     },
-    loadedMovie (state) {
-      return (movieId) => {
-        return state.allMovies.find((movie) => {
-          return movie.id === movieId
-        })
-      }
+    loadedMovie(state) {
+      return movieId => {
+        return state.allMovies.find(movie => {
+          return movie.id === movieId;
+        });
+      };
     }
   }
 });

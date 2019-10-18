@@ -26,12 +26,32 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
+  methods: mapActions(["fetchPopularMovies"]),
   computed: {
-    popularMovies () {
-      return this.$store.getters.popularMovies
+    popularMovies() {
+      return this.$store.getters.popularMovies;
     }
-  }
+  },
+  created() {
+    this.fetchPopularMovies()
+  },
+
+  // created() {
+  //   axios
+  //     .get(
+  //       "https://api.themoviedb.org/3/movie/popular?api_key=ae56d736d615cdd0ba87516da9dc0134&language=en-US&page=1"
+  //     )
+  //     .then(res => console.log(res.data.results))
+  //     .catch(err => console.log(err));
+  // }
+
+  // }
+  //   // this.$store.dispatch('fetchPopularMovies')
+  //   //   .then(data => {
+  //   //   console.log(data)
+  //   // })
 };
 </script>
 
