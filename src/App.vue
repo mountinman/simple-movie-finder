@@ -5,7 +5,9 @@
         <router-link to="/" tag="span" style="cursor: pointer">MovieFINDER</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-for="item in dynamicMenu" :key="item.title" :to="item.link" text>
+      <v-btn v-for="item in dynamicMenu" 
+      :key="item.title" 
+      :to="item.link" text>
         <v-icon left dark>{{ item.icon }}</v-icon>
         <span class="mr-2">{{item.title}}</span>
       </v-btn>
@@ -23,7 +25,7 @@ export default {
       dynamicMenu: [
         { icon: "home", title: "HOME", link: "/" },
         { icon: "movie", title: "ALL MOVIES", link: "/movies" },
-        { icon: "person", title: "ABOUT ME", link: "/about" }
+        { icon: "person", title: "ABOUT", link: "/about" }
       ]
     };
   }

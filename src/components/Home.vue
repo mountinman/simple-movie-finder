@@ -9,7 +9,7 @@
         style="cursor:pointer"
         v-for="movie in popularMovies"
         :key="movie.title"
-        :src="movie.imageUrl"
+        :src="url + movie.poster_path"
       >
         <div class="carousel-title">
           <p>{{movie.title}}</p>
@@ -26,8 +26,14 @@
 </template>
 
 <script>
+
 import { mapActions } from "vuex";
 export default {
+  data () {
+    return {
+      url: 'http://image.tmdb.org/t/p/w500/'
+    }
+  },
   methods: mapActions(["fetchPopularMovies"]),
   computed: {
     popularMovies() {
@@ -35,23 +41,8 @@ export default {
     }
   },
   created() {
-    this.fetchPopularMovies()
-  },
-
-  // created() {
-  //   axios
-  //     .get(
-  //       "https://api.themoviedb.org/3/movie/popular?api_key=ae56d736d615cdd0ba87516da9dc0134&language=en-US&page=1"
-  //     )
-  //     .then(res => console.log(res.data.results))
-  //     .catch(err => console.log(err));
-  // }
-
-  // }
-  //   // this.$store.dispatch('fetchPopularMovies')
-  //   //   .then(data => {
-  //   //   console.log(data)
-  //   // })
+    this.fetchPopularMovies();
+  }
 };
 </script>
 
@@ -72,8 +63,9 @@ export default {
   color: white;
   position: relative;
   top: 350px;
-  font-size: 30px;
+  font-size: 20px;
   margin-left: 20px;
+  margin-top: 10px;
   font-weight: 700;
   text-transform: uppercase;
 }

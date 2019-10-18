@@ -48,9 +48,8 @@ export const store = new Vuex.Store({
   },
   mutations: {
     setPopularMovies: (state, popularMovies) => {
-      state.popularMovies = popularMovies
+      state.popularMovies = popularMovies;
     }
-    
   },
   actions: {
     async fetchPopularMovies({ commit }) {
@@ -60,18 +59,10 @@ export const store = new Vuex.Store({
 
       commit("setPopularMovies", response.data.results);
     }
-
-    // fetchPopularMovies () {
-    //   return fetch('https://jsonplaceholder.typicode.com/todos/1')
-    //   .then(res => {
-    //     store.commit('setPopularMovies', res.data)
-    //     return res.data
-    //   })
-    // }
   },
   getters: {
     popularMovies(state) {
-      return state.popularMovies;
+      return state.popularMovies.slice(0, 5);
     },
     allMovies(state) {
       return state.allMovies;
