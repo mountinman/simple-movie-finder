@@ -10,26 +10,26 @@
 
           <v-card-subtitle class="pb-0">
             <span style="font-weight:700">AVERAGE VOTE:</span>
-            {{movie.vote_average}}</v-card-subtitle>
+            {{movie.vote_average}}
+          </v-card-subtitle>
 
           <v-card-text class="text--primary">
             <div>{{movie.overview.substring(0,140)+"..."}}</div>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn :to="'/movies/' + movie.id" color="orange" text>VIEW MORE</v-btn>
+            <v-btn color="orange" text>
+              <router-link :to="{ name: 'MovieDetails', params: { id: movie.id }}">VIEW MORE</router-link>
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
-    
+
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on }">
-          <v-btn 
-          id="floating-btn" 
-          color="primary" 
-          dark v-on="on">FIND MOVIE</v-btn>
+          <v-btn id="floating-btn" color="primary" dark v-on="on">FIND MOVIE</v-btn>
         </template>
         <v-card>
           <v-card-title>
@@ -96,14 +96,10 @@ export default {
     };
   },
   methods: mapActions(["fetchPopularMovies"]),
-  // computed: {
-  //   popularMovies() {
-  //     return this.$store.getters.popularMovies;
-  //   }
-  // },
+
   computed: {
     popularMovies() {
-      return this.$store.getters.popularMovies;
+      return this.$store.getters.getPopularMovies;
     }
   },
   created() {

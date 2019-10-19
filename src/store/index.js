@@ -79,15 +79,15 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    popularMovies(state) {
+    getPopularMovies(state) {
       return state.popularMovies;
     },
     allMovies(state) {
       return state.allMovies;
     },
     loadedMovie(state) {
-      return movieId => {
-        return state.allMovies.find(movie => {
+      return (movieId) => {
+        return state.popularMovies.find((movie) => {
           return movie.id === movieId;
         });
       };

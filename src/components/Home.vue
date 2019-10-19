@@ -38,7 +38,7 @@ export default {
   methods: mapActions(["fetchPopularMovies"]),
   computed: {
     popularMovies() {
-      return this.$store.getters.popularMovies.slice(0, 7);
+      return this.$store.getters.getPopularMovies.slice(0, 7);
     }
   },
   created() {
