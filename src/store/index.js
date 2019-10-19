@@ -42,6 +42,24 @@ export const store = new Vuex.Store({
         title: "pop2",
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
+      },
+      {
+        id: "hjDre9h3",
+        title: "pop2",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
+      },
+      {
+        id: "4782rerp",
+        title: "pop1",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
+      },
+      {
+        id: "hj3rew9h3",
+        title: "pop2",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
       }
     ],
     popularMovies: []

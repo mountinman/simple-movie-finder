@@ -2,7 +2,7 @@
   <v-container class="grey lighten-5">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <v-row>
-      <v-col v-for="movie in allMovies" :key="movie.id" cols="12" md="6">
+      <v-col v-for="movie in allMovies" :key="movie.id" cols="12" md="4">
         <v-card class="mx-auto" max-width="400">
           <v-img class="white--text align-end" height="200px" :src="movie.imageUrl">
             <v-card-title>{{movie.title}}</v-card-title>
@@ -24,7 +24,7 @@
       </v-col>
     </v-row>
     <v-btn id="floating-btn" to="/find-movie" text>
-      <span class>FIND</span>
+      <span class>FIND MOVIE</span>
     </v-btn>
   </v-container>
 </template>
@@ -39,5 +39,15 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style lang="scss">
+@import "../scss/_variables";
+
+#floating-btn {
+  position: fixed;
+  right: 50px;
+  bottom: 40px;
+  background: $btn-color;
+  color: aliceblue;
+}
+</style>>
+

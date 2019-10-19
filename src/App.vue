@@ -25,7 +25,6 @@ export default {
       dynamicMenu: [
         { icon: "home", title: "HOME", link: "/" },
         { icon: "movie", title: "ALL MOVIES", link: "/movies" },
-        { icon: "person", title: "ABOUT", link: "/about" }
       ]
     };
   }
