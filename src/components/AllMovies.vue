@@ -1,35 +1,39 @@
 <template>
-  <v-container class="grey lighten-5">
+  <v-container v-if="movieIndex < popularMovies.length" class="grey lighten-5">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <v-row>
-      <v-col v-for="movie in popularMovies" :key="movie.id" cols="12" md="4">
+      <v-col :key="movieIndex" v-for="movieIndex in moviesToShow" cols="12" md="4">
         <v-card class="mx-auto" max-width="400">
-          <v-img class="white--text align-end" height="200px" :src="apiUrl + movie.poster_path">
-            <v-card-title>{{movie.title}}</v-card-title>
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            :src="apiUrl + popularMovies[movieIndex].poster_path"
+          >
+            <v-card-title>{{popularMovies[movieIndex].title}}</v-card-title>
           </v-img>
 
           <v-card-subtitle class="pb-0 vote">
             <span style="font-weight:700"></span>
-            {{movie.vote_average}}
+            {{popularMovies[movieIndex].vote_average}}
           </v-card-subtitle>
 
           <v-card-text class="text--primary">
             <h4 style="padding:20px 10px 10px 0">SHORT DESCRIPTION:</h4>
-            <div>{{movie.overview.substring(0,140)+"..."}}</div>
+            <div>{{popularMovies[movieIndex].overview.substring(0,140)+"..."}}</div>
           </v-card-text>
 
           <v-card-actions>
             <v-btn color="orange" text>
-              <router-link :to="{ name: 'MovieDetails', params: { id: movie.id }}">VIEW MORE</router-link>
+              <router-link
+                :to="{ name: 'MovieDetails', params: { id: popularMovies[movieIndex].id }}"
+              >VIEW MORE</router-link>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
     <div style="text-align:center;">
-      <v-btn 
-      @click="loadMore"
-      color="orange">LOAD MORE</v-btn>
+      <v-btn @click="moviesToShow += 6" color="orange">LOAD MORE</v-btn>
     </div>
 
     <v-row justify="center">
@@ -98,12 +102,15 @@ export default {
   data() {
     return {
       apiUrl: "http://image.tmdb.org/t/p/w500/",
-      dialog: false
+      dialog: false,
+      moviesToShow: 6,
+      movieIndex: null
     };
   },
-  methods: {...mapActions(["fetchPopularMovies"]),
-    loadMore () {
-      alert('load more')
+  methods: {
+    ...mapActions(["fetchPopularMovies"]),
+    loadMore() {
+      alert("load more");
     }
   },
 
@@ -126,9 +133,9 @@ export default {
   top: 0px;
   right: 0;
   background: #1976d1;
-  color: white!important;
-  font-weight: 900!important;
-  padding: 3px!important;
+  color: white !important;
+  font-weight: 900 !important;
+  padding: 3px !important;
 }
 #floating-btn {
   position: fixed;
