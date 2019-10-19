@@ -1,13 +1,12 @@
 <template>
   <v-container v-if="movieIndex < popularMovies.length" class="grey lighten-5">
-    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <v-row>
       <v-col :key="movieIndex" v-for="movieIndex in moviesToShow" cols="12" md="4">
         <v-card class="mx-auto" max-width="400">
           <v-img
             class="white--text align-end"
             height="200px"
-            :src="apiUrl + popularMovies[movieIndex].poster_path"
+            :src="picBasePath + popularMovies[movieIndex].poster_path"
           >
             <v-card-title>{{popularMovies[movieIndex].title}}</v-card-title>
           </v-img>
@@ -18,12 +17,18 @@
           </v-card-subtitle>
 
           <v-card-text class="text--primary">
-            <h4 style="padding:20px 10px 10px 0">SHORT DESCRIPTION:</h4>
-            <div>{{popularMovies[movieIndex].overview.substring(0,140)+"..."}}</div>
+            <p style="padding:20px 10px 0 0">
+              <u>release date: {{popularMovies[movieIndex].release_date}}</u>
+            </p>
+            <div>
+              <span style="font-weight:700">DESCRIPTION:</span>
+              {{popularMovies[movieIndex].overview.substring(0,110)+"..."}}
+            </div>
+            <span>({{popularMovies[movieIndex].original_language}})</span>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange" text>
+            <v-btn text>
               <router-link
                 :to="{ name: 'MovieDetails', params: { id: popularMovies[movieIndex].id }}"
               >VIEW MORE</router-link>
@@ -101,7 +106,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      apiUrl: "http://image.tmdb.org/t/p/w500/",
+      picBasePath: "http://image.tmdb.org/t/p/w500/",
       dialog: false,
       moviesToShow: 6,
       movieIndex: null
@@ -109,9 +114,6 @@ export default {
   },
   methods: {
     ...mapActions(["fetchPopularMovies"]),
-    loadMore() {
-      alert("load more");
-    }
   },
 
   computed: {
@@ -140,7 +142,7 @@ export default {
 #floating-btn {
   position: fixed;
   right: 50px;
-  bottom: 40px;
+  bottom: 12px;
   background: $btn-color;
   color: aliceblue;
 }
