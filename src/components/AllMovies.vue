@@ -8,12 +8,13 @@
             <v-card-title>{{movie.title}}</v-card-title>
           </v-img>
 
-          <v-card-subtitle class="pb-0">
-            <span style="font-weight:700">AVERAGE VOTE:</span>
+          <v-card-subtitle class="pb-0 vote">
+            <span style="font-weight:700"></span>
             {{movie.vote_average}}
           </v-card-subtitle>
 
           <v-card-text class="text--primary">
+            <h4 style="padding:20px 10px 10px 0">SHORT DESCRIPTION:</h4>
             <div>{{movie.overview.substring(0,140)+"..."}}</div>
           </v-card-text>
 
@@ -25,6 +26,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <div style="text-align:center;">
+      <v-btn 
+      @click="loadMore"
+      color="orange">LOAD MORE</v-btn>
+    </div>
 
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
@@ -95,7 +101,11 @@ export default {
       dialog: false
     };
   },
-  methods: mapActions(["fetchPopularMovies"]),
+  methods: {...mapActions(["fetchPopularMovies"]),
+    loadMore () {
+      alert('load more')
+    }
+  },
 
   computed: {
     popularMovies() {
@@ -111,6 +121,15 @@ export default {
 <style lang="scss">
 @import "../scss/_variables";
 
+.vote {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  background: #1976d1;
+  color: white!important;
+  font-weight: 900!important;
+  padding: 3px!important;
+}
 #floating-btn {
   position: fixed;
   right: 50px;

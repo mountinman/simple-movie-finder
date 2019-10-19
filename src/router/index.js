@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
-import FindMovie from "@/components/FindMovie";
 import AllMovies from "@/components/AllMovies";
 import MovieDetails from "@/components/MovieDetails";
 
@@ -26,11 +25,6 @@ export default new Router({
       props: true,
       component: MovieDetails
     },
-    {
-      path: "/find-movie",
-      name: "FindMovie",
-      component: FindMovie
-    }
   ],
   mode: "history"
 });
