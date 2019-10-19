@@ -14,7 +14,7 @@
         style="cursor:pointer"
         v-for="movie in popularMovies"
         :key="movie.title"
-        :src="url + movie.poster_path"
+        :src="apiUrl + movie.poster_path"
       >
         <div class="carousel-title">
           <p>{{movie.title}}</p>
@@ -32,7 +32,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      url: "http://image.tmdb.org/t/p/w500/"
+      apiUrl: "http://image.tmdb.org/t/p/w500/"
     };
   },
   methods: mapActions(["fetchPopularMovies"]),
