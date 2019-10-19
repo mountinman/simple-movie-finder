@@ -80,7 +80,7 @@ export const store = new Vuex.Store({
   },
   getters: {
     popularMovies(state) {
-      return state.popularMovies.slice(0, 7);
+      return state.popularMovies;
     },
     allMovies(state) {
       return state.allMovies;

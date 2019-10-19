@@ -8,14 +8,16 @@
             <v-card-title>{{movie.title}}</v-card-title>
           </v-img>
 
-          <v-card-subtitle class="pb-0">POPULARITY</v-card-subtitle>
+          <v-card-subtitle class="pb-0">
+            <span style="font-weight:700">AVERAGE VOTE:</span>
+            {{movie.vote_average}}</v-card-subtitle>
 
           <v-card-text class="text--primary">
-            <div>DESCRIPTION</div>
+            <div>{{movie.overview.substring(0,140)+"..."}}</div>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn :to="'/movies/' + movie.id" color="orange" text>VIEW DETAILS</v-btn>
+            <v-btn :to="'/movies/' + movie.id" color="orange" text>VIEW MORE</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
