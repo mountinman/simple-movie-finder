@@ -2,8 +2,9 @@
   <div class="main-home-container">
     <div class="movie-slideshow" style="text-align:center;">
       <div class="mover-1">
-        <h4>YOU CAN SEE OUR MOST POPULAR MOVIES HERE ON
-          THIS PAGES. FOR MORE MOVIES CHECK OUT OUR SECTION ALL MOVIES
+        <h4>
+          YOU CAN SEE THE MOST POPULAR MOVIES HERE ON
+          THIS HOME PAGE. FOR MORE MOVIES CHECK OUT SECTION ALL MOVIES
           AND FIND YOUR FAVORITE MOVIE GY GENRE, SEE YOU THERE, ENJOY!
         </h4>
       </div>
@@ -15,6 +16,7 @@
         v-for="movie in popularMovies"
         :key="movie.title"
         :src="apiUrl + movie.poster_path"
+        @click="loadRouterLink(movie.id)"
       >
         <div class="carousel-title">
           <p>{{movie.title}}</p>
@@ -35,7 +37,12 @@ export default {
       apiUrl: "http://image.tmdb.org/t/p/w500/"
     };
   },
-  methods: mapActions(["fetchPopularMovies"]),
+  methods: {
+    ...mapActions(["fetchPopularMovies"]),
+    loadRouterLink(movieId) {
+      this.$router.push({ name: "MovieDetails", params: { id: movieId } });
+    }
+  },
   computed: {
     popularMovies() {
       return this.$store.getters.getPopularMovies.slice(0, 7);
@@ -49,6 +56,7 @@ export default {
 
 <style lang="scss">
 @import "../scss/_variables";
+
 .v-image__image--cover {
   background-size: initial !important;
 }
@@ -83,7 +91,7 @@ export default {
   transform: translate3d(0, 0, 0);
 }
 .movie-slideshow .mover-1 {
-  animation: moveSlideshow 12s linear infinite;
+  animation: moveSlideshow 16s linear infinite;
 }
 @keyframes moveSlideshow {
   100% {

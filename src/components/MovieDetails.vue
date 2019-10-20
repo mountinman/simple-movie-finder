@@ -10,10 +10,15 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
-        <star-rating></star-rating>
+        <star-rating v-model="rating"></star-rating>
+        <h3>
+          Your Rating:
+          <span style="font-weight:400">{{rating}}</span>
+        </h3>
+        <p v-if="rating === null ? ratingMessage = 'you didn\'t vote yet' : ''">{{ratingMessage}}</p>
         <div>
           <p class="basic-movie-info">
-            <span style="font-weight:700">Rating:</span>
+            <span style="font-weight:700">Average Rating:</span>
             {{movie.vote_average}}
           </p>
           <p>
@@ -41,16 +46,18 @@
 </template>
 
 <script>
-import StarRating from 'vue-star-rating'
+import StarRating from "vue-star-rating";
 
 export default {
   props: ["id"],
-  components:{
+  components: {
     StarRating
   },
   data() {
     return {
-      picBasePath: "http://image.tmdb.org/t/p/w500/"
+      picBasePath: "http://image.tmdb.org/t/p/w500/",
+      rating: null,
+      ratingMessage: ''
     };
   },
   computed: {
@@ -62,7 +69,10 @@ export default {
 </script>
 
 <style lang="scss">
-.basic-movie-info{
+.vue-star-rating-rating-text[data-v-34cbeed1] {
+  display: none !important;
+}
+.basic-movie-info {
   margin-top: 40px;
 }
 .movie-overview {
