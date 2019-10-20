@@ -4,6 +4,8 @@ import Home from "@/components/Home";
 import AllMovies from "@/components/AllMovies";
 import MovieDetails from "@/components/MovieDetails";
 import MovieRoulette from "@/components/MovieRoulette";
+import UserInfo from "@/components/UserInfo";
+
 
 
 
@@ -31,6 +33,11 @@ export default new Router({
       path: "/movie-roulette",
       name: "MovieRoulette",
       component: MovieRoulette
+    },
+    {
+      path: "/user-info",
+      name: "UserInfo",
+      component: UserInfo
     }
   ],
   mode: "history"

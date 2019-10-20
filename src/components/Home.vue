@@ -3,9 +3,9 @@
     <div class="movie-slideshow" style="text-align:center;">
       <div class="mover-1">
         <h4>
-          YOU CAN SEE THE MOST POPULAR MOVIES HERE ON
-          THIS HOME PAGE. FOR MORE MOVIES CHECK OUT SECTION ALL MOVIES
-          AND FIND YOUR FAVORITE MOVIE GY GENRE, SEE YOU THERE, ENJOY!
+          YOU CAN SEE THE MOST POPULAR MOVIES HERE, SLIDING IN
+          THIS CAROUSEL... FOR MORE MOVIES CHECK OUT SECTION ALL MOVIES
+          AND FIND YOUR FAVORITE MOVIE GY GENRE, SEE YOU THERE, ENJOY...
         </h4>
       </div>
     </div>
@@ -23,9 +23,7 @@
         </div>
       </v-carousel-item>
     </v-carousel>
-    <div style="text-align:center;">
-      <p>...click on picture to see details!</p>
-    </div>
+    
   </div>
 </template>
 

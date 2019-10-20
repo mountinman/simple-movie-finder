@@ -40,6 +40,7 @@
             {{movie.overview}}
           </p>
         </div>
+        <v-btn @click="backToAllMovies">BACK TO ALL MOVIES</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -60,6 +61,11 @@ export default {
       ratingMessage: ''
     };
   },
+  methods: {
+    backToAllMovies () {
+      this.$router.push('/movies')
+    }
+  },
   computed: {
     movie() {
       return this.$store.getters.movieDetails(this.id);
@@ -77,8 +83,8 @@ export default {
 }
 .movie-overview {
   padding: 25px;
-  /* border: 1px solid gray; */
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
 }
 </style>
 

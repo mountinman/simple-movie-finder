@@ -52,12 +52,11 @@
             <v-radio label="Comedy" value=35></v-radio>
             <v-radio label="Action" value=28></v-radio>
             <v-radio label="Animation" value=16></v-radio>
-           
           </v-radio-group>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click="whatIsNumber">Roll</v-btn>
+          <v-btn color="blue darken-1" text @click="selectedGenre">Roll</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -79,9 +78,10 @@ export default {
   },
   methods: {
     ...mapActions(["fetchPopularMovies"]),
-    whatIsNumber() {
-      const nums = parseInt(this.genreId)
-      this.$store.commit('setGenreId', nums)
+    
+    selectedGenre() {
+      const genreNum = parseInt(this.genreId)
+      this.$store.commit('setGenreId', genreNum)
       this.$router.push("/movie-roulette");
     }
   },

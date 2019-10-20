@@ -9,7 +9,8 @@ export default {
 
   computed: {
     movie() {
-      return this.$store.getters.movieByGenre(this.$store.getters.getGenreId);
+      return this.$store.getters
+      .movieByGenre(this.$store.getters.getGenreId);
     }
   }
 };
