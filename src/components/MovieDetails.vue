@@ -1,11 +1,52 @@
 <template>
-  <p>{{movie.title}}</p>
+  <v-container>
+    <div>
+      <h2 style="margin-left:65px;">{{movie.title}}</h2>
+    </div>
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-card class="mx-auto" max-width="434" tile>
+          <v-img height="100%" :src="picBasePath + movie.poster_path"></v-img>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6">
+        <div>
+          <p>
+            <span style="font-weight:700">Rating:</span>
+            {{movie.vote_average}}
+          </p>
+          <p>
+            <span style="font-weight:700">Popularity:</span>
+            {{movie.popularity}}
+          </p>
+          <p>
+            <span style="font-weight:700">Language:</span>
+            {{movie.original_language}}
+          </p>
+          <p>
+            <span style="font-weight:700">Release date:</span>
+            {{movie.release_date}}
+          </p>
+        </div>
+        <div class="movie-overview">
+          <p style="text-align:justify;">
+            <span style="font-weight:700">OVERVIEW:</span>
+            {{movie.overview}}
+          </p>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
   props: ["id"],
-
+  data() {
+    return {
+      picBasePath: "http://image.tmdb.org/t/p/w500/"
+    };
+  },
   computed: {
     movie() {
       return this.$store.getters.loadedMovie(this.id);
@@ -14,5 +55,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.movie-overview {
+  padding: 25px;
+  /* border: 1px solid gray; */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
 </style>
+
