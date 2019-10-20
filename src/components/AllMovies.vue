@@ -38,31 +38,7 @@
       <v-btn @click="moviesToShow += 6" color="orange">LOAD MORE</v-btn>
     </div>
 
-   <v-row justify="center">
-    <v-dialog v-model="dialog" scrollable max-width="300px">
-      <template v-slot:activator="{ on }">
-        <v-btn id="floating-btn"  color="primary" dark v-on="on">FIND BY GENRE</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>MOVIE ROULETTE</v-card-title>
-        <v-divider></v-divider>
-        <v-card-title><small>select genre:</small></v-card-title>
-        <v-card-text style="height: 300px;">
-          <v-radio-group v-model="genreId" column>
-            <v-radio label="Comedy" value="35"></v-radio>
-            <v-radio label="Action" value="28"></v-radio>
-            <v-radio label="Drama" value="18"></v-radio>
-            <v-radio label="Horror" value="27"></v-radio>
-           
-          </v-radio-group>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-btn color="blue darken-1" text @click="showGenre">Roll</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+    <v-btn id="floating-btn" color="primary" @click="findByGenre">FIND BY GENRE</v-btn>
   </v-container>
 </template>
 <script>
@@ -72,18 +48,14 @@ export default {
   data() {
     return {
       picBasePath: "http://image.tmdb.org/t/p/w500/",
-      genreId: '',
-      dialog: false,
-      moviesToShow: 9,
+      moviesToShow: 6,
       movieIndex: null
     };
   },
   methods: {
     ...mapActions(["fetchPopularMovies"]),
-    showGenre () {
-      alert('genreId is: ' + this.genreId)
-      this.$router.push('/movie-roulette')
-      this.dialog = false
+    findByGenre() {
+      this.$router.push("/movie-roulette");
     }
   },
 
