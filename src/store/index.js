@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    moviesByyGenre: [],
+    moviesByGenre: [],
     popularMovies: []
   },
   mutations: {
@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    async fetchPopularMovies({ commit }) {
+    async fetchPopularMovies ({ commit }) {
       const response = await axios.get(
         "https://api.themoviedb.org/3/movie/popular?api_key=ae56d736d615cdd0ba87516da9dc0134&language=en-US&page=1"
       );
@@ -24,18 +24,24 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    getPopularMovies(state) {
+    getPopularMovies (state) {
       return state.popularMovies;
     },
-    allMovies(state) {
-      return state.allMovies;
-    },
-    loadedMovie(state) {
+    movieDetails (state) {
       return (movieId) => {
         return state.popularMovies.find((movie) => {
           return movie.id === movieId;
         });
       };
+    },
+    movieByGenre (state) {
+      return (genreId) => {
+        return state.popularMovies.find((movie) => {
+          movie.genreId.map((id) => {
+            return id === genreId
+          })
+        })
+      }
     }
   }
 });

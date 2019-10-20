@@ -26,12 +26,10 @@
             </div>
             <span>({{popularMovies[movieIndex].original_language}})</span>
           </v-card-text>
-
           <v-card-actions>
-            
-              <router-link
-                :to="{ name: 'MovieDetails', params: { id: popularMovies[movieIndex].id }}"
-              >VIEW MORE</router-link>
+            <router-link
+              :to="{ name: 'MovieDetails', params: { id: popularMovies[movieIndex].id }}"
+            >VIEW MORE</router-link>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -50,7 +48,7 @@
         <v-divider></v-divider>
         <v-card-title><small>select genre:</small></v-card-title>
         <v-card-text style="height: 300px;">
-          <v-radio-group v-model="dialogm1" column>
+          <v-radio-group v-model="genreId" column>
             <v-radio label="Comedy" value="35"></v-radio>
             <v-radio label="Action" value="28"></v-radio>
             <v-radio label="Drama" value="18"></v-radio>
@@ -60,7 +58,7 @@
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click="dialog = false">Roll</v-btn>
+          <v-btn color="blue darken-1" text @click="showGenre">Roll</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -74,7 +72,7 @@ export default {
   data() {
     return {
       picBasePath: "http://image.tmdb.org/t/p/w500/",
-      dialogm1: '',
+      genreId: '',
       dialog: false,
       moviesToShow: 9,
       movieIndex: null
@@ -82,6 +80,11 @@ export default {
   },
   methods: {
     ...mapActions(["fetchPopularMovies"]),
+    showGenre () {
+      alert('genreId is: ' + this.genreId)
+      this.$router.push('/movie-roulette')
+      this.dialog = false
+    }
   },
 
   computed: {

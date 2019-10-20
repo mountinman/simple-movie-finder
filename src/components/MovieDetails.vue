@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     movie() {
-      return this.$store.getters.loadedMovie(this.id);
+      return this.$store.getters.movieDetails(this.id);
     }
   }
 };
