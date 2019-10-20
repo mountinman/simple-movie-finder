@@ -38,7 +38,30 @@
       <v-btn @click="moviesToShow += 6" color="orange">LOAD MORE</v-btn>
     </div>
 
-    <v-btn id="floating-btn" color="primary" @click="findByGenre">FIND BY GENRE</v-btn>
+    <v-row justify="center">
+    <v-dialog v-model="dialog" scrollable max-width="300px">
+      <template v-slot:activator="{ on }">
+        <v-btn id="floating-btn" color="primary" dark v-on="on">FIND BY GENRE</v-btn>
+      </template>
+      <v-card>
+        <v-card-title>Select Genre</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text style="height: 300px;">
+          <v-radio-group v-model="genreId" column>
+            <v-radio label="Drama" value=18></v-radio>
+            <v-radio label="Comedy" value=35></v-radio>
+            <v-radio label="Action" value=28></v-radio>
+            <v-radio label="Animation" value=16></v-radio>
+           
+          </v-radio-group>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="blue darken-1" text @click="whatIsNumber">Roll</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
   </v-container>
 </template>
 <script>
@@ -49,12 +72,16 @@ export default {
     return {
       picBasePath: "http://image.tmdb.org/t/p/w500/",
       moviesToShow: 6,
-      movieIndex: null
+      movieIndex: null,
+      genreId: null,
+      dialog: false,
     };
   },
   methods: {
     ...mapActions(["fetchPopularMovies"]),
-    findByGenre() {
+    whatIsNumber() {
+      const nums = parseInt(this.genreId)
+      this.$store.commit('setGenreId', nums)
       this.$router.push("/movie-roulette");
     }
   },
