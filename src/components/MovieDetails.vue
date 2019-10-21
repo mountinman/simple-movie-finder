@@ -10,17 +10,17 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
-        <star-rating 
-        @rating-selected ="setMessage"
-        :max-rating="10"
-        v-model="rating"></star-rating>
-        <h3>Your Rating:</h3>
-        <p>{{ratingMessage}}</p>
-        <label><input 
-        v-model="watched"
-        type="checkbox"> check if you already watch this movie</label><p></p>
-        <v-btn @click="saveRating">SAVE INFO</v-btn>
-
+        <star-rating @rating-selected="updateMovie" :max-rating="10" v-model="movie.rating"></star-rating>
+        <div v-if="!movie.didWatched">
+          <label>
+            <input v-model="movie.didWatched" type="checkbox" /> check if you already watched this movie
+          </label>
+        </div>
+        <div v-else>
+          <label>
+            <input v-model="movie.didWatched" type="checkbox" /> you watched this movie
+          </label>
+        </div>
         <div>
           <p class="basic-movie-info">
             <span style="font-weight:700">Average Rating:</span>
@@ -62,22 +62,16 @@ export default {
   data() {
     return {
       picBasePath: "http://image.tmdb.org/t/p/w500/",
-      rating: null,
-      ratingMessage: 'you didn\'t vote yet',
-      watched: false,
-      userInfo: []
+      didWatched: false
     };
   },
   methods: {
-    backToAllMovies () {
-      this.$router.push('/movies')
+    backToAllMovies() {
+      this.$router.push("/movies");
     },
-    setMessage () {
-      this.ratingMessage = 'you vote ' + this.rating + ' stars for this movie'
-    },
-    saveRating () {
-      const userData = {id: this.movie.id, rating: this.rating, watched: this.watched}
-      this.$store.commit('setUserInfo', userData)
+
+    updateMovie() {
+      this.$store.commit("updateMovie", this.movie);
     }
   },
   computed: {

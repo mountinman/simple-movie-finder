@@ -39,33 +39,31 @@
     </div>
 
     <v-row justify="center">
-    <v-dialog v-model="dialog" scrollable max-width="300px">
-      <template v-slot:activator="{ on }">
-        <v-btn id="floating-btn" color="primary" dark v-on="on">FIND BY GENRE</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>Select Genre</v-card-title>
-        <v-divider></v-divider>
-        <v-card-text style="height: 300px;">
-          <v-radio-group v-model="genreId" column>
-            <v-radio label="Drama" value=18></v-radio>
-            <v-radio label="Comedy" value=35></v-radio>
-            <v-radio label="Action" value=28></v-radio>
-            <v-radio label="Animation" value=16></v-radio>
-          </v-radio-group>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-btn color="blue darken-1" text @click="selectedGenre">Roll</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+      <v-dialog v-model="dialog" scrollable max-width="300px">
+        <template v-slot:activator="{ on }">
+          <v-btn id="floating-btn" color="primary" dark v-on="on">FIND BY GENRE</v-btn>
+        </template>
+        <v-card>
+          <v-card-title>Select Genre</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text style="height: 300px;">
+            <v-radio-group v-model="genreId" column>
+              <v-radio label="Drama" value="18"></v-radio>
+              <v-radio label="Comedy" value="35"></v-radio>
+              <v-radio label="Action" value="28"></v-radio>
+              <v-radio label="Animation" value="16"></v-radio>
+            </v-radio-group>
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-btn color="blue darken-1" text @click="selectedGenre">Roll</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 <script>
-import { mapActions } from "vuex";
-
 export default {
   data() {
     return {
@@ -73,26 +71,20 @@ export default {
       moviesToShow: 6,
       movieIndex: null,
       genreId: null,
-      dialog: false,
+      dialog: false
     };
   },
   methods: {
-    ...mapActions(["fetchPopularMovies"]),
-    
     selectedGenre() {
-      const genreNum = parseInt(this.genreId)
-      this.$store.commit('setGenreId', genreNum)
+      const genreNum = parseInt(this.genreId);
+      this.$store.commit("setGenreId", genreNum);
       this.$router.push("/movie-roulette");
     }
   },
-
   computed: {
     popularMovies() {
       return this.$store.getters.getPopularMovies;
     }
-  },
-  created() {
-    this.fetchPopularMovies();
   }
 };
 </script>
