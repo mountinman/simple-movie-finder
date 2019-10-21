@@ -34,7 +34,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <div style="text-align:center;">
+    <div style="text-align:center; margin-top:30px;">
       <v-btn @click="moviesToShow += 6" color="orange">LOAD MORE</v-btn>
     </div>
 

@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     popularMovies: [],
-    genreId:null
+    userInfo: [],
+    genreId:null,
   },
   mutations: {
     setPopularMovies: (state, popularMovies) => {
@@ -15,6 +16,10 @@ export const store = new Vuex.Store({
     },
     setGenreId: (state, genreId) => {
       state.genreId = genreId
+    },
+    setUserInfo: (state, userInfo) => {
+      state.userInfo.push(userInfo)
+      console.log(state.userInfo)
     }
   },
   actions: {
@@ -48,6 +53,7 @@ export const store = new Vuex.Store({
     },
     getGenreId (state) {
       return state.genreId
-    }
+    },
+    
   }
 });

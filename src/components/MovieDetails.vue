@@ -10,12 +10,17 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
-        <star-rating v-model="rating"></star-rating>
-        <h3>
-          Your Rating:
-          <span style="font-weight:400">{{rating}}</span>
-        </h3>
-        <p v-if="rating === null ? ratingMessage = 'you didn\'t vote yet' : ''">{{ratingMessage}}</p>
+        <star-rating 
+        @rating-selected ="setMessage"
+        :max-rating="10"
+        v-model="rating"></star-rating>
+        <h3>Your Rating:</h3>
+        <p>{{ratingMessage}}</p>
+        <label><input 
+        v-model="watched"
+        type="checkbox"> check if you already watch this movie</label><p></p>
+        <v-btn @click="saveRating">SAVE INFO</v-btn>
+
         <div>
           <p class="basic-movie-info">
             <span style="font-weight:700">Average Rating:</span>
@@ -58,12 +63,21 @@ export default {
     return {
       picBasePath: "http://image.tmdb.org/t/p/w500/",
       rating: null,
-      ratingMessage: ''
+      ratingMessage: 'you didn\'t vote yet',
+      watched: false,
+      userInfo: []
     };
   },
   methods: {
     backToAllMovies () {
       this.$router.push('/movies')
+    },
+    setMessage () {
+      this.ratingMessage = 'you vote ' + this.rating + ' stars for this movie'
+    },
+    saveRating () {
+      const userData = {id: this.movie.id, rating: this.rating, watched: this.watched}
+      this.$store.commit('setUserInfo', userData)
     }
   },
   computed: {
