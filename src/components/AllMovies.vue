@@ -2,7 +2,10 @@
   <v-container v-if="movieIndex < popularMovies.length" class="grey lighten-5">
     <v-row>
       <v-col :key="movieIndex" v-for="movieIndex in moviesToShow" cols="12" md="4">
-        <v-card class="mx-auto" max-width="400">
+        <v-card 
+        @click="loadRouterLink(popularMovies[movieIndex].id)"
+        style="cursor:pointer"
+        class="mx-auto" max-width="400">
           <v-img
             class="white--text align-end"
             height="200px"
@@ -79,6 +82,9 @@ export default {
       const genreNum = parseInt(this.genreId);
       this.$store.commit("setGenreId", genreNum);
       this.$router.push("/movie-roulette");
+    },
+    loadRouterLink(movieId) {
+      this.$router.push({ name: "MovieDetails", params: { id: movieId } });
     }
   },
   computed: {
