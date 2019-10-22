@@ -4,23 +4,15 @@
       <h2 style="margin-left:65px;">{{movie.title}}</h2>
     </div>
     <v-row>
-      <v-col cols="12" md="6">
+      <v-col 
+       cols="12" md="6">
         <v-card class="mx-auto" max-width="434" tile>
           <v-img height="100%" :src="picBasePath + movie.poster_path"></v-img>
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
         <star-rating @rating-selected="updateMovie" :max-rating="10" v-model="movie.rating"></star-rating>
-        <div v-if="!movie.didWatched">
-          <label>
-            <input v-model="movie.didWatched" type="checkbox" /> check if you already watched this movie
-          </label>
-        </div>
-        <div v-else>
-          <label>
-            <input v-model="movie.didWatched" type="checkbox" /> you watched this movie
-          </label>
-        </div>
+       <p v-if="movie.rating">Your rating for this movie is {{movie.rating}} stars</p>
         <div>
           <p class="basic-movie-info">
             <span style="font-weight:700">Average Rating:</span>
@@ -69,9 +61,11 @@ export default {
     backToAllMovies() {
       this.$router.push("/movies");
     },
-
     updateMovie() {
       this.$store.commit("updateMovie", this.movie);
+    },
+    loadRouterLink(movieId) {
+      this.$router.push({ name: "MovieDetails", params: { id: movieId } });
     }
   },
   computed: {
