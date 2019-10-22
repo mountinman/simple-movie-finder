@@ -5,7 +5,7 @@
     v-for="movie in popularMovies" 
     :key="movie.id">
       <h4>{{movie.title}}</h4>
-      <star-rating @rating-selected="updateMovie" :max-rating="10" v-model="movie.rating"></star-rating>
+      <star-rating read-only="true" :max-rating="10" v-model="movie.rating"></star-rating>
     </div>
   </div>
 </template>
