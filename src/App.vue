@@ -23,7 +23,7 @@ export default {
       dynamicMenu: [
         { icon: "home", title: "HOME", link: "/" },
         { icon: "movie", title: "ALL MOVIES", link: "/movies" },
-        { icon: "persone", title: "USER INFO", link: "/user-info" }
+        { icon: "persone", title: "RATED MOVIE", link: "/user-info" }
       ]
     };
   }
