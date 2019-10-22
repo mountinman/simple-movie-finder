@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -36,7 +35,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchPopularMovies"]),
     loadRouterLink(movieId) {
       this.$router.push({ name: "MovieDetails", params: { id: movieId } });
     }
@@ -46,9 +44,6 @@ export default {
       return this.$store.getters.getPopularMovies.slice(0, 7);
     }
   },
-  created() {
-    this.fetchPopularMovies();
-  }
 };
 </script>
 
