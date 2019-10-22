@@ -17,17 +17,24 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
       dynamicMenu: [
         { icon: "home", title: "HOME", link: "/" },
         { icon: "movie", title: "ALL MOVIES", link: "/movies" },
-        { icon: "persone", title: "RATED MOVIE", link: "/user-info" }
+        { icon: "persone", title: "RATED MOVIES", link: "/user-info" }
       ]
     };
+  },
+  methods: {
+    ...mapActions(["fetchPopularMovies"])
+  },
+  created() {
+    this.fetchPopularMovies();
   }
-  
 };
 </script>
 
